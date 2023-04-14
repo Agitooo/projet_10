@@ -12,8 +12,6 @@ class ProjectListSerializer(ModelSerializer):
         model = Project
         fields = [
             'id',
-            'date_created',
-            'date_updated',
             'title',
             'author',
         ]
@@ -25,12 +23,26 @@ class ProjectInsertSerializer(ModelSerializer):
         model = Project
         fields = [
             'id',
-            'date_created',
-            'date_updated',
             'type',
             'title',
             'description',
             'author',
+            'date_created',
+            'date_updated',
+        ]
+
+
+class ProjectUpdateSerializer(ModelSerializer):
+
+    class Meta:
+        model = Project
+        fields = [
+            'id',
+            'type',
+            'title',
+            'description',
+            'date_created',
+            'date_updated',
         ]
 
 
@@ -41,12 +53,12 @@ class ProjectDetailSerializer(ModelSerializer):
         model = Project
         fields = [
             'id',
-            'date_created',
-            'date_updated',
             'type',
             'title',
             'description',
             'author',
+            'date_created',
+            'date_updated',
         ]
 
 
@@ -115,6 +127,22 @@ class IssueInsertSerializer(ModelSerializer):
         ]
 
 
+class IssueUpdateSerializer(ModelSerializer):
+
+    class Meta:
+        model = Issue
+        fields = [
+            'id',
+            'title',
+            'desc',
+            'tag',
+            'priority',
+            'status',
+            'assignee',
+            'created_time',
+        ]
+
+
 class CommentListSerializer(ModelSerializer):
     author = UserListSerializer()
     issue = IssueListSerializer()
@@ -131,6 +159,19 @@ class CommentListSerializer(ModelSerializer):
 
 
 class CommentInsertSerializer(ModelSerializer):
+
+    class Meta:
+        model = Comment
+        fields = [
+            'id',
+            'description',
+            'author',
+            'issue',
+            'created_time',
+        ]
+
+
+class CommentUpdateSerializer(ModelSerializer):
 
     class Meta:
         model = Comment
